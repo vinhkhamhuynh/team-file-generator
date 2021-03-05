@@ -26,3 +26,39 @@
 
 //generate html base on the information collected 
 
+
+//packages require
+const inquirer = require('inquirer');
+const fs = require ('fs');
+const generateHtml = require('./generateHtml');
+
+
+//array of questions 
+const questions = [
+    {
+        type: 'input',
+        name: 'managerName',
+        message: "What is the team manager's name?",
+        validate: function validatemanagerName(managerName) {
+            return managerName !== '';
+        }
+    },
+];
+
+//created fuction to init app
+const init = () => {
+    inquirer.prompt([...questions])
+    .then((answers)=>{
+        try {
+            fs.writeFileSync('./dist/test.html', generateHtml(answers));
+            console.log('successfully added to html');
+        }
+        catch (err) {
+            console.log(err);
+        }
+    });
+
+};
+
+//function call to initialize app
+init();
