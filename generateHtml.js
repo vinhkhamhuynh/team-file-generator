@@ -1,5 +1,5 @@
 //function to generate html
-function generateHtml(answers) {
+function generateHtml() {
     return `
     <!DOCTYPE html>
 <html lang="en">

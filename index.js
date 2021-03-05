@@ -9,9 +9,9 @@
 // What is your engineer's email?
 // What is your engineer's Github username?
 // Which type of team member would you like to add?
-    // engineer
-    //intern
-    //I am finished building my team.
+// engineer
+//intern
+//I am finished building my team.
 // What is your intern's name?
 // What is your intern's id?
 // What is your intern's email?
@@ -29,12 +29,32 @@
 
 //packages require
 const inquirer = require('inquirer');
-const fs = require ('fs');
+const fs = require('fs');
 const generateHtml = require('./generateHtml');
+const manager = require('./lib/manager');
+
+//arrays to hold new team
+let teamManager = [];
+
+//questions for new member of the team
+const newMemQuestions = [
+    {
+        type: 'confirm',
+        message: 'Are you adding new member to the team?',
+        name: 'newMem'
+    },
+    {
+        type: 'list',
+        message: 'Which type of team member would you like to add?',
+        choice: ["Engineer", "Intern"],
+        name: 'memberType',
+        when: (answers) => answers.newMember === true,
+    },
+];
 
 
-//array of questions 
-const questions = [
+//questions for manager info
+const managerQuestions = [
     {
         type: 'input',
         name: 'managerName',
@@ -45,20 +65,15 @@ const questions = [
     },
 ];
 
+
+
 //created fuction to init app
-const init = () => {
-    inquirer.prompt([...questions])
-    .then((answers)=>{
-        try {
-            fs.writeFileSync('./dist/test.html', generateHtml(answers));
-            console.log('successfully added to html');
-        }
-        catch (err) {
-            console.log(err);
-        }
-    });
+const buildTeam = () => {
+
+    fs.writeFileSync('./dist/test.html', generateHtml(teamManager), (err) => err ? console.log(err) : console.log('Team Assembled'));
 
 };
+
 
 //function call to initialize app
 init();
