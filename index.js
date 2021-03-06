@@ -52,9 +52,16 @@ const newMemQuestions = [
     },
 ];
 
-
+// Please buit your team
+// What is the team manager's name?
+// What is the team manager's id?
+// What is the team manager's email?
+// What is the team manager's office number?
 //questions for manager info
 const managerQuestions = [
+    // {
+    //     message: "Please buit your team"
+    // },
     {
         type: 'input',
         name: 'managerName',
@@ -63,9 +70,60 @@ const managerQuestions = [
             return managerName !== '';
         }
     },
+    {
+        type: 'input',
+        name: 'managerId',
+        message: "What is the team manager's ID?",
+        validate: function validatemanagerId(managerId) {
+            return managerId !== '';
+        }
+    },
+    {
+        type: 'input',
+        name: 'managerEmail',
+        message: "What is the team manager's Email?",
+        validate: function validatemanagerEmail(managerEmail) {
+            return managerEmail!== '';
+        }
+    },
+    {
+        type: 'input',
+        name: 'managerOfficeNum',
+        message: "What is the team manager's Office Number?",
+        validate: function validatemanagerOfficeNum(managerOfficeNum) {
+            return managerOfficeNum !== '';
+        }
+    },
 ];
 
+//function to add new manager
+const addManager = ()=> {
+    inquirer.prompt([...managerQuestions])
+    .then ((managerAnswer) => {
+        teamManager.push(new manager(managerAnswer.managerName, managerAnswer.managerId, managerAnswer.managerEmail, managerAnswer.managerOfficeNum));
+        newMem();
+    })
+}
 
+//function to add new member
+const newMem =() => {
+    inquirer.prompt([...newMemQuestions])
+    .then ((newMemAnswers)=> {
+        if (newMemAnswers.newMem) {
+            switch(newMemAnswers.memberType) {
+                case 'Manager':
+                    addManager();
+                    break;
+            };
+        } 
+        else {
+            buildTeam();
+        }
+    })
+    .catch ((err)=> {
+        console.log(err);
+    });
+};
 
 //created fuction to init app
 const buildTeam = () => {
@@ -76,4 +134,4 @@ const buildTeam = () => {
 
 
 //function call to initialize app
-init();
+addManager();

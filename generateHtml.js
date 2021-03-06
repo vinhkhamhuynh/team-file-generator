@@ -1,5 +1,39 @@
+const employee = require('./lib/employee');
+const manager = require('./lib/manager')
+
+//function to create manager card with loop
+function loopManager(teamManager) {
+    let managerCards = [];
+
+    for(i =0; i< teamManager.length;i++){
+        let managerSection = `
+        <section class="col">
+        <div class="card shadow rounded">
+
+            <div class="card-header">
+                ${teamManager[i].getName()} <br>
+                ${teamManager[i].getMemberType()}
+            </div>
+
+            <div class="card-body">
+
+                <ul class="list-group list-group-flush border">
+                    <li class="list-group-item">ID: ${teamManager[i].getId()}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${teamManager[i].getEmail()}">${teamManager[i].getEmail()}</a></li>
+                    <li class="list-group-item">${teamManager[i].getOfficeNum()}</li>
+                </ul>
+
+            </div>
+
+        </div>
+    </section>`
+    managerCards.push(managerSection)
+    }
+    return managerCards.join('');
+};
+
 //function to generate html
-function generateHtml() {
+function generateHtml(teamManager) {
     return `
     <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +50,7 @@ function generateHtml() {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>${answers.managerName}<h1>
+${loopManager(teamManager)}
 </body>
 </html>
    
