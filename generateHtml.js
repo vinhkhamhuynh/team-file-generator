@@ -39,7 +39,8 @@ const loopEngineer = (teamEngineer) => {
     let engineerCards = [];
 
     for (i = 0; i < teamEngineer.length; i++) {
-        let engineerSection = `<section class="col">
+        let engineerSection = `
+        <section class="col">
     <div class="card shadow rounded">
 
         <div class="card-header">
@@ -52,12 +53,13 @@ const loopEngineer = (teamEngineer) => {
             <ul class="list-group list-group-flush border">
                 <li class="list-group-item">ID: ${teamEngineer[i].getId()}</li>
                 <li class="list-group-item">Email: <a href="mailto:${teamEngineer[i].getEmail()}">${teamEngineer[i].getEmail()}</a></li>
-                <li class="list-group-item">GitHub Link: <a href="https://github.com/${teamEngineer[i].getGithub()}" target="_blank">${teamEngineer[i].getGithub()}</li>
+                <li class="list-group-item">GitHub Link: <a href="https://github.com/${teamEngineer[i].getGithub()}" target="_blank">${teamEngineer[i].getGithub()}</a></li>
             </ul>
 
         </div>
 
     </div>
+   
     </section>`
         engineerCards.push(engineerSection)
     };
@@ -68,7 +70,7 @@ const loopEngineer = (teamEngineer) => {
 const loopIntern = (teamIntern) => {
     let internCard = [];
 
-    for (i=0; i<teamIntern.length; i++) {
+    for (i = 0; i < teamIntern.length; i++) {
         let internSection = `<section class="col">
         <div class="card shadow rounded">
     
@@ -112,13 +114,23 @@ function generateHtml(teamManager, teamEngineer, teamIntern) {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<header class="header">
+<h1>Team Avenger Assemble</h1>
+</header>
+
+<main class="row justify-content-center">
+<section class="col-md-10 justify-content-center text-center m-3">
 ${loopManager(teamManager)}
+<section class="row row-cols-2 row-cols-md-2 g-4 mt-2">
 ${loopEngineer(teamEngineer)}
+</section>
+<section class="row row-cols-1 row-cols-md-3 g-4 mt-2">
 ${loopIntern(teamIntern)}
+</section>
+</section>
+</main>
 </body>
 </html>
-   
-    
     `;
 };
 
