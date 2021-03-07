@@ -52,7 +52,7 @@ const loopEngineer = (teamEngineer) => {
             <ul class="list-group list-group-flush border">
                 <li class="list-group-item">ID: ${teamEngineer[i].getId()}</li>
                 <li class="list-group-item">Email: <a href="mailto:${teamEngineer[i].getEmail()}">${teamEngineer[i].getEmail()}</a></li>
-                <li class="list-group-item">GitHub Link: <a href="https://github.com/${teamEngineer[i].getGithub()}" "target=_blank">${teamEngineer[i].getGithub()}</li>
+                <li class="list-group-item">GitHub Link: <a href="https://github.com/${teamEngineer[i].getGithub()}" target="_blank">${teamEngineer[i].getGithub()}</li>
             </ul>
 
         </div>

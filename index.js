@@ -1,42 +1,15 @@
-// Please buit your team
-// What is the team manager's name?
-// What is the team manager's id?
-// What is the team manager's email?
-// What is the team manager's office number?
-// Which type of team member would you like to add?
-// What is your engineer's name?
-// What is your engineer's id?
-// What is your engineer's email?
-// What is your engineer's Github username?
-// Which type of team member would you like to add?
-// engineer
-//intern
-//I am finished building my team.
-// What is your intern's name?
-// What is your intern's id?
-// What is your intern's email?
-// What is your intern's school name?
-
-//built test for employee
-//built test manager
-//built test engineer
-//built test intern
-
-//build promp to collect information
-
-//generate html base on the information collected 
-
-
 //packages require
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateHtml = require('./generateHtml');
 const manager = require('./lib/manager');
 const engineer = require('./lib/engineer');
+const intern = require('./lib/intern');
 
 //arrays to hold new team
 let teamManager = [];
 let teamEngineer = [];
+let teamIntern = [];
 
 //questions for new member of the team
 const newMemQuestions = [
@@ -48,17 +21,13 @@ const newMemQuestions = [
     {
         type: 'list',
         message: 'Which type of team member would you like to add?',
-        choices: ["Manager","Engineer", "Intern"],
+        choices: ["Manager", "Engineer", "Intern"],
         name: 'memberType',
         when: (answers) => answers.newMem === true,
     },
 ];
 
-// Please buit your team
-// What is the team manager's name?
-// What is the team manager's id?
-// What is the team manager's email?
-// What is the team manager's office number?
+
 //questions for manager info
 const managerQuestions = [
     // {
@@ -98,12 +67,7 @@ const managerQuestions = [
     },
 ];
 
-// What is your engineer's name?
-// What is your engineer's id?
-// What is your engineer's email?
-// What is your engineer's Github username?
-// Which type of team member would you like to add?
-// engineer
+
 //generate engineer questions
 const engineerQuestions = [
     {
@@ -140,6 +104,46 @@ const engineerQuestions = [
     },
 ];
 
+// What is your intern's name?
+// What is your intern's id?
+// What is your intern's email?
+// What is your intern's school name?
+//generate intern questions 
+const internQuestions = [
+    {
+        type: 'input',
+        name: 'internName',
+        message: "What is the team intern's name?",
+        validate: function validateInternName(internName) {
+            return internName !== '';
+        }
+    },
+    {
+        type: 'input',
+        name: 'internId',
+        message: "What is the team intern's Id?",
+        validate: function validateInternId(internId) {
+            return internId !== '';
+        }
+    },
+    {
+        type: 'input',
+        name: 'internEmail',
+        message: "What is the team intern's email?",
+        validate: function validateInternEmail(internEmail) {
+            return internEmail !== '';
+        }
+    },
+    {
+        type: 'input',
+        name: 'internSchool',
+        message: "What is the team intern's school name?",
+        validate: function validateInterSchool(internSchool) {
+            return internSchool !== '';
+        }
+    },
+];
+
 //function to add new member
 const newMem = () => {
     inquirer.prompt([...newMemQuestions])
@@ -152,6 +156,10 @@ const newMem = () => {
 
                     case 'Engineer':
                         addEngineer();
+                        break;
+
+                    case 'Intern':
+                        addIntern();
                         break;
                 };
             }
@@ -181,12 +189,19 @@ const addEngineer = () => {
         });
 };
 
-
+//function to add new intern
+const addIntern = () => {
+    inquirer.prompt([...internQuestions])
+    .then((internQuestions)=> {
+        teamIntern.push(new intern(internQuestions.internName, internQuestions.internId, internQuestions.internEmail, internQuestions.internSchool));
+        newMem();
+    });
+};
 
 //created fuction to init app
 const buildTeam = () => {
 
-    fs.writeFileSync('./dist/test.html', generateHtml(teamManager, teamEngineer), (err) => err ? console.log(err) : console.log("Team Assembled"));
+    fs.writeFileSync('./dist/test.html', generateHtml(teamManager, teamEngineer, teamIntern), (err) => err ? console.log(err) : console.log("Team Assembled"));
 
 };
 
