@@ -201,7 +201,7 @@ const addIntern = () => {
 //created fuction to init app
 const buildTeam = () => {
 
-    fs.writeFileSync('./dist/test.html', generateHtml(teamManager, teamEngineer, teamIntern), (err) => err ? console.log(err) : console.log("Team Assembled"));
+    fs.writeFileSync('./dist/index.html', generateHtml(teamManager, teamEngineer, teamIntern), (err) => err ? console.log(err) : console.log("Team Assembled"));
 
 };
 

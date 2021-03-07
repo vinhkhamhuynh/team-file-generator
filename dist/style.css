@@ -1,0 +1,73 @@
+body {
+    background-color: #1e303a;
+    
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color:#752126 ;
+    color:#ffffff;
+    border-radius: 0;
+    border-bottom: 10px solid  #EFA53A;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    
+   
+  }
+/* style for manager */
+  .mHeader {
+      background-color: #0e305d;
+      color: #f6f6f7;
+      text-transform: uppercase;
+  }
+
+  .mBody {
+    background-color: #bd142b
+    
+  }
+
+  .mLi{
+    
+    color:  #bd142b;
+  }
+
+  /* style for engineer */
+  .eHeader {
+    background-color:#c09645 ;
+    color: #f6f6f7;
+    text-transform: uppercase;
+  }
+
+  .eBody {
+    background-color: #aa2822;
+   
+  }
+
+  .eLi {
+    
+    color:#c09645
+  }
+
+    /* style for intern */
+    .iHeader {
+        background-color:#2b6bbd;
+        color: #f6f6f7;
+        text-transform: uppercase;
+    }
+  
+    .iBody {
+        background-color:  #7e1f27;
+        
+    }
+  
+    .iLi {
+    
+        color: #2b6bbd;
+    }
+
+

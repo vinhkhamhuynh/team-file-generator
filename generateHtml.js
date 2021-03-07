@@ -12,17 +12,17 @@ function loopManager(teamManager) {
         <section class="col">
         <div class="card shadow rounded">
 
-            <div class="card-header">
+            <div class="card-header mHeader">
                 ${teamManager[i].getName()} <br>
                 ${teamManager[i].getMemberType()}
             </div>
 
-            <div class="card-body">
+            <div class="card-body mBody">
 
                 <ul class="list-group list-group-flush border">
-                    <li class="list-group-item">ID: ${teamManager[i].getId()}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${teamManager[i].getEmail()}">${teamManager[i].getEmail()}</a></li>
-                    <li class="list-group-item">Office Number: ${teamManager[i].getOfficeNum()}</li>
+                    <li class="list-group-item mLi">ID: ${teamManager[i].getId()}</li>
+                    <li class="list-group-item mLi">Email: <a href="mailto:${teamManager[i].getEmail()}">${teamManager[i].getEmail()}</a></li>
+                    <li class="list-group-item mLi">Office Number: ${teamManager[i].getOfficeNum()}</li>
                 </ul>
 
             </div>
@@ -43,17 +43,17 @@ const loopEngineer = (teamEngineer) => {
         <section class="col">
     <div class="card shadow rounded">
 
-        <div class="card-header">
+        <div class="card-header eHeader">
             ${teamEngineer[i].getName()} <br>
             ${teamEngineer[i].getMemberType()}
         </div>
 
-        <div class="card-body">
+        <div class="card-body eBody">
 
             <ul class="list-group list-group-flush border">
-                <li class="list-group-item">ID: ${teamEngineer[i].getId()}</li>
-                <li class="list-group-item">Email: <a href="mailto:${teamEngineer[i].getEmail()}">${teamEngineer[i].getEmail()}</a></li>
-                <li class="list-group-item">GitHub Link: <a href="https://github.com/${teamEngineer[i].getGithub()}" target="_blank">${teamEngineer[i].getGithub()}</a></li>
+                <li class="list-group-item eLi">ID: ${teamEngineer[i].getId()}</li>
+                <li class="list-group-item eLi">Email: <a href="mailto:${teamEngineer[i].getEmail()}">${teamEngineer[i].getEmail()}</a></li>
+                <li class="list-group-item eLi">GitHub Link: <a href="https://github.com/${teamEngineer[i].getGithub()}" target="_blank">${teamEngineer[i].getGithub()}</a></li>
             </ul>
 
         </div>
@@ -74,17 +74,17 @@ const loopIntern = (teamIntern) => {
         let internSection = `<section class="col">
         <div class="card shadow rounded">
     
-            <div class="card-header">
+            <div class="card-header iHeader">
                 ${teamIntern[i].getName()} <br>
                 ${teamIntern[i].getMemberType()}
             </div>
     
-            <div class="card-body">
+            <div class="card-body iBody">
     
                 <ul class="list-group list-group-flush border">
-                    <li class="list-group-item">ID: ${teamIntern[i].getId()}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${teamIntern[i].getEmail()}">${teamIntern[i].getEmail()}</a></li>
-                    <li class="list-group-item">School Name: ${teamIntern[i].getSchool()}</li>
+                    <li class="list-group-item iLi">ID: ${teamIntern[i].getId()}</li>
+                    <li class="list-group-item iLi">Email: <a href="mailto:${teamIntern[i].getEmail()}">${teamIntern[i].getEmail()}</a></li>
+                    <li class="list-group-item iLi">School Name: ${teamIntern[i].getSchool()}</li>
                 </ul>
     
             </div>
