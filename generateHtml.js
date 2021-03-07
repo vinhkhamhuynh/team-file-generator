@@ -114,7 +114,7 @@ function generateHtml(teamManager, teamEngineer, teamIntern) {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="header">
+<header class="header jumbotron">
 <h1>Team Avenger Assemble</h1>
 </header>
 
