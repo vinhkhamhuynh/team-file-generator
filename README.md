@@ -41,6 +41,8 @@ These are the technologies and languages use for this project:
 Deployed GitHub Link:   This project does not have a deployable link. Please check [Installation](#Installation) section for detail 
 
 Github Repository Link: https://github.com/vinhkhamhuynh/team-file-generator
+
+[Click for video on Youtube DEMO Team File Generator](https://youtu.be/wJgaTZqeAwU)
   
 ![team avenger theme with 1 manager, 2 engineer ,and 3 intern , all with name , id , email](./src/team-avenger-screenshot.PNG)
   
