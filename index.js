@@ -32,9 +32,11 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const generateHtml = require('./generateHtml');
 const manager = require('./lib/manager');
+const engineer = require('./lib/engineer');
 
 //arrays to hold new team
 let teamManager = [];
+let teamEngineer = [];
 
 //questions for new member of the team
 const newMemQuestions = [
@@ -46,9 +48,9 @@ const newMemQuestions = [
     {
         type: 'list',
         message: 'Which type of team member would you like to add?',
-        choice: ["Engineer", "Intern"],
+        choices: ["Manager","Engineer", "Intern"],
         name: 'memberType',
-        when: (answers) => answers.newMember === true,
+        when: (answers) => answers.newMem === true,
     },
 ];
 
@@ -83,7 +85,7 @@ const managerQuestions = [
         name: 'managerEmail',
         message: "What is the team manager's Email?",
         validate: function validatemanagerEmail(managerEmail) {
-            return managerEmail!== '';
+            return managerEmail !== '';
         }
     },
     {
@@ -96,39 +98,95 @@ const managerQuestions = [
     },
 ];
 
-//function to add new manager
-const addManager = ()=> {
-    inquirer.prompt([...managerQuestions])
-    .then ((managerAnswer) => {
-        teamManager.push(new manager(managerAnswer.managerName, managerAnswer.managerId, managerAnswer.managerEmail, managerAnswer.managerOfficeNum));
-        newMem();
-    })
-}
+// What is your engineer's name?
+// What is your engineer's id?
+// What is your engineer's email?
+// What is your engineer's Github username?
+// Which type of team member would you like to add?
+// engineer
+//generate engineer questions
+const engineerQuestions = [
+    {
+        type: 'input',
+        name: 'engineerName',
+        message: "What is the team engineer's name?",
+        validate: function validateengineerName(engineerName) {
+            return engineerName !== '';
+        }
+    },
+    {
+        type: 'input',
+        name: 'engineerEmail',
+        message: "What is the team engineer's email?",
+        validate: function validateengineerEmail(engineerEmail) {
+            return engineerEmail !== '';
+        }
+    },
+    {
+        type: 'input',
+        name: 'engineerId',
+        message: "What is the team engineer's Id?",
+        validate: function validateengineerId(engineerId) {
+            return engineerId !== '';
+        }
+    },
+    {
+        type: 'input',
+        name: 'engineerGithub',
+        message: "What is the team engineer's GitHub username?",
+        validate: function validateengineerGithub(engineerGithub) {
+            return engineerGithub !== '';
+        }
+    },
+];
 
 //function to add new member
-const newMem =() => {
+const newMem = () => {
     inquirer.prompt([...newMemQuestions])
-    .then ((newMemAnswers)=> {
-        if (newMemAnswers.newMem) {
-            switch(newMemAnswers.memberType) {
-                case 'Manager':
-                    addManager();
-                    break;
-            };
-        } 
-        else {
-            buildTeam();
-        }
-    })
-    .catch ((err)=> {
-        console.log(err);
-    });
+        .then((newMemQuestions) => {
+            if (newMemQuestions.newMem) {
+                switch (newMemQuestions.memberType) {
+                    case 'Manager':
+                        addManager();
+                        break;
+
+                    case 'Engineer':
+                        addEngineer();
+                        break;
+                };
+            }
+            else {
+                buildTeam();
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        });
 };
+//function to add new manager
+const addManager = () => {
+    inquirer.prompt([...managerQuestions])
+        .then((managerAnswer) => {
+            teamManager.push(new manager(managerAnswer.managerName, managerAnswer.managerId, managerAnswer.managerEmail, managerAnswer.managerOfficeNum));
+            newMem();
+        });
+};
+
+//function to add new engineer
+const addEngineer = () => {
+    inquirer.prompt([...engineerQuestions])
+        .then((engineerQuestions) => {
+            teamEngineer.push(new engineer(engineerQuestions.engineerName, engineerQuestions.engineerId, engineerQuestions.engineerEmail, engineerQuestions.engineerGithub));
+            newMem();
+        });
+};
+
+
 
 //created fuction to init app
 const buildTeam = () => {
 
-    fs.writeFileSync('./dist/test.html', generateHtml(teamManager), (err) => err ? console.log(err) : console.log('Team Assembled'));
+    fs.writeFileSync('./dist/test.html', generateHtml(teamManager, teamEngineer), (err) => err ? console.log(err) : console.log("Team Assembled"));
 
 };
 
