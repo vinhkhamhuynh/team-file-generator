@@ -1,6 +1,7 @@
 const employee = require('./lib/employee');
 const manager = require('./lib/manager');
 const engineer = require('./lib/engineer');
+const intern = require('./lib/intern')
 
 //function to create manager card with loop
 function loopManager(teamManager) {
@@ -37,7 +38,6 @@ function loopManager(teamManager) {
 const loopEngineer = (teamEngineer) => {
     let engineerCards = [];
 
-
     for (i = 0; i < teamEngineer.length; i++) {
         let engineerSection = `<section class="col">
     <div class="card shadow rounded">
@@ -60,13 +60,43 @@ const loopEngineer = (teamEngineer) => {
     </div>
     </section>`
         engineerCards.push(engineerSection)
-    }
+    };
     return engineerCards.join('');
 };
 
-    //function to generate html
-    function generateHtml(teamManager, teamEngineer) {
-        return `
+//function to generate intern card with loop
+const loopIntern = (teamIntern) => {
+    let internCard = [];
+
+    for (i=0; i<teamIntern.length; i++) {
+        let internSection = `<section class="col">
+        <div class="card shadow rounded">
+    
+            <div class="card-header">
+                ${teamIntern[i].getName()} <br>
+                ${teamIntern[i].getMemberType()}
+            </div>
+    
+            <div class="card-body">
+    
+                <ul class="list-group list-group-flush border">
+                    <li class="list-group-item">ID: ${teamIntern[i].getId()}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${teamIntern[i].getEmail()}">${teamIntern[i].getEmail()}</a></li>
+                    <li class="list-group-item">School Name: ${teamIntern[i].getSchool()}</li>
+                </ul>
+    
+            </div>
+    
+        </div>
+        </section>`
+        internCard.push(internSection);
+    };
+    return internCard.join('');
+};
+
+//function to generate html
+function generateHtml(teamManager, teamEngineer, teamIntern) {
+    return `
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,12 +114,13 @@ const loopEngineer = (teamEngineer) => {
 <body>
 ${loopManager(teamManager)}
 ${loopEngineer(teamEngineer)}
+${loopIntern(teamIntern)}
 </body>
 </html>
    
     
     `;
-    }
+};
 
-    //export to index.js
-    module.exports = generateHtml;
+//export to index.js
+module.exports = generateHtml;
